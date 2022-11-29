@@ -1,0 +1,21 @@
+/* Spinner */
+.text-center{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.spinner-border{
+  width: 100px !important;
+  height: 100px  !important;
+  border-right-color: #fff !important;
+}
+
+.visually{
+  font-size: 20px;
+  font-weight: 900;
+  font-family: var(--tipografia-sec) !important;
+  margin-top: 10px;
+  color: #fff;
+}

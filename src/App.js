@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+/* Screens */
+import Home from './screens/Home/Home';
+import Login from './screens/Login/Login';
+import FormContext from './context/FormContext';
+/* Credenciales */
+import { app } from './firebase/Credenciales';
+import {getAuth , onAuthStateChanged } from 'firebase/auth';
+const auth = getAuth(app)
+
+
 function App() {
+
+  const [user , setUser] = useState(null)
+
+  //Si hay user o no
+  onAuthStateChanged(auth, (user) =>{
+    user ? setUser(user) : setUser(null);
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+    <FormContext>
+      <section className='app-container'>
+        {user ? <Home user={user}/> : <Login/>}
+      </section>
+    </FormContext>
+   </>
   );
 }
 
